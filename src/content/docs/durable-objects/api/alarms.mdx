@@ -106,6 +106,18 @@ export class AlarmExample extends DurableObject {
 }
 ```
 
+The following example shows how the `alarmInfo` property can be leveraged to identify if the alarm event has been attempted before.
+
+```js
+class MyDurableObject extends DurableObject {
+  async alarm(alarmInfo) {
+    if (alarmInfo?.retryCount != 0) {
+      console.log("This alarm event has been attempted ${alarmInfo?.retryCount} times before.");
+    }
+  }
+}
+```
+
 ## Related resources
 
 - Understand how to [use the Alarms API](/durable-objects/examples/alarms-api/) in an end-to-end example.
